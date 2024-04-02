@@ -4,6 +4,8 @@ import { userApi } from "../../entities/user/api/userApi";
 import rouletteSlice from "../../games/roulette/slice/rouletteSlice";
 import walletSlice from "../../entities/wallet/slices/walletSlice";
 import rouletteSpinSlice from "../../games/roulette/slice/rouletteSpinSlice";
+import slotSlice from "../../games/slots/slices/slotSlice";
+import hummerCoreSlice from "../../games/hummer/slices/hummerCoreSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +13,8 @@ export const store = configureStore({
     wallet: walletSlice,
     roulette: rouletteSlice,
     rouletteSpin: rouletteSpinSlice,
+    slot: slotSlice,
+    hummerCoreSlice: hummerCoreSlice,
     [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

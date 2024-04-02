@@ -1,12 +1,10 @@
 import React, { FC } from "react";
-import SlotGameScene from "./scene/GameScene/GameScene";
+import SlotGameScene from "./scene/GameScene";
 
 interface ICoreGameSlotsProps {}
 
 const CoreGameSlots: FC<ICoreGameSlotsProps> = ({}) => {
-  return (
-     <SlotGameScene />
-  );
+  return <SlotGameScene />;
 };
 
 export default CoreGameSlots;
