@@ -1,0 +1,21 @@
+.button {
+  cursor: pointer;
+}
+.buttonInfoBlock {
+  position: relative;
+  margin-top: 0.25rem;
+  justify-content: center;
+  display: flex;
+}
+.infoTable {
+    width: 300px;
+    display: block;
+    max-width: 8vw;
+    position: absolute;
+    top: -60px;
+    opacity: 0;
+     transition: opacity 0.3s ease;
+}
+.buttonInfoBlock:hover .infoTable{
+    opacity: 1;
+}

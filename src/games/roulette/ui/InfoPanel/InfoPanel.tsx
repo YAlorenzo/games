@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useAppDispatch, useAppSelector } from "../../../../app/store/hook";
+import { useAppSelector } from "../../../../app/store/hook";
 import {
   selectActiveNumber,
   selectCurrentBet,
@@ -42,19 +42,21 @@ const InfoPanel: FC<IInfoPanelProps> = ({ }) => {
   const balance = useAppSelector(selectBalance);
   const activeNumber = useAppSelector(selectActiveNumber);
   const currentBet = useAppSelector(selectCurrentBet);
-  const winBet = 100;
+  const winBet = currentBet * 36;
   return (
     <div className="flex justify-between px-10">
       {ITEMS.map((item) => (
         <div key={item.id}>
-          <div>{item.title}</div>
+          <div className="text-[25px]">{item.title}</div>
           <div>
             {item.id === "balance" && (
               <ScoreWindow icon="balance">{balance}</ScoreWindow>
             )}
             {item.id === "winBet" && (
               <ScoreWindow icon="winBet">
-                <div className="pr-1">{winBet}</div>
+                <div className="pr-1">{winBet !== 0 ? ("+" + winBet) : (
+                 winBet
+                )}</div>
               </ScoreWindow>
             )}
             {item.id === "currentBet" && (

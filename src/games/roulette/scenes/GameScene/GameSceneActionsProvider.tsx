@@ -20,13 +20,13 @@ const GameSceneActionsProvider: FC<IGameSceneActionsProviderProps> = ({ children
         if (lifecycle === RouletteLifecycle.FINISHED) {
             if (activeNumber === currentNumber) {
                 // Win case
-                dispatch(setBalance(currentBet * winBet))
-                dispatch(setRouletteWinOrLose(RouletteWinOrLose.WIN));
+                 dispatch(setBalance(currentBet * winBet));
+                 dispatch(setRouletteWinOrLose(RouletteWinOrLose.WIN));
             }
             else {
                 // Lose case
-                dispatch(setBalance(-currentBet))
-                dispatch(setRouletteWinOrLose(RouletteWinOrLose.LOSE));
+                 dispatch(setBalance(-currentBet));
+                 dispatch(setRouletteWinOrLose(RouletteWinOrLose.LOSE));
             }
             dispatch(setRouletteLifecycle(RouletteLifecycle.INFO));
         }
@@ -35,7 +35,7 @@ const GameSceneActionsProvider: FC<IGameSceneActionsProviderProps> = ({ children
 
     useEffect(() => {
         if (lifecycle === RouletteLifecycle.INFO) {
-            const lifeTimeout = setTimeout(() => {
+            setTimeout(() => {
                 dispatch(setRouletteLifecycle(RouletteLifecycle.READT_TO_START));
                 dispatch(clearRoulette());
                 dispatch(clearRouletteSpin());

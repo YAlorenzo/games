@@ -12,7 +12,7 @@ interface IScoreWindowProps {
 
 const ScoreWindow: FC<IScoreWindowProps> = ({ children, icon }) => {
   return (
-    <div className="relative font-sans text-[35px]">
+    <div className="relative font-sans text-[35px] passion-one-regular">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="224"

@@ -5,10 +5,10 @@ interface ICoreGameRouletteProps {}
 
 const CoreGameRoulette: FC<ICoreGameRouletteProps> = ({ }) => {
     return (
-        <div>
-            <RouletteGameScene />
-        </div>
-    )
+      <div className="passion-one-regular">
+        <RouletteGameScene />
+      </div>
+    );
     
 };
 export default CoreGameRoulette;

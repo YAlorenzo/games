@@ -10,7 +10,14 @@ import bet400 from "./bet-400.png";
 import bet800 from "./bet-800.png";
 import bgBets from "./bg-bets.png";
 import bgRoulette from "./bg-roulette.png";
-import bg from './bg1.jpg'
+import bg from './bg1.jpg';
+import homeButtonIcon from "./home_button.svg";
+import friendsButtonIcon from "./friends_button.svg";
+import infoButtonIcon from "./info_button.svg";
+import settingButtonIcon from "./setting_button.svg";
+import infoTable from "./infoTable.svg";
+
+
 
 
 export {
@@ -26,5 +33,10 @@ export {
     bet800,
     bgBets,
     bgRoulette,
-    bg
+    bg,
+    homeButtonIcon,
+    friendsButtonIcon,
+    infoButtonIcon,
+    settingButtonIcon,
+    infoTable
 }

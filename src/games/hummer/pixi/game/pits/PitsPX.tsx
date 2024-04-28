@@ -23,7 +23,7 @@ const PitsPX: FC<IPitsPXProps> = ({}) => {
         console.log(PIXI.Texture.from(name));
         return PIXI.Texture.from(name);
       });
-      // console.log(genFrames);
+      console.log(genFrames);
       setFrames(genFrames);
     });
   }, []);

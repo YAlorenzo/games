@@ -1,5 +1,9 @@
 export const ROULETTE_TABLE_NUMBERS = [
   {
+    number: 0,
+    color: "white",
+  },
+  {
     number: 1,
     color: "red",
   },

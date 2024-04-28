@@ -8,6 +8,7 @@ import { sound } from "@pixi/sound";
 import {
   soundBet,
   soundBg,
+  // soundBg,
   soundNumber,
   soundRouletteSpin,
 } from "../../../../assets/sounds/roulette";
@@ -16,7 +17,7 @@ import * as PIXI from "pixi.js";
 
 interface IRouletteGameSceneProps {}
 
-const [width, height] = [1150, 500];
+const [width, height] = [1300, 550];
 
 const RouletteGameScene: FC<IRouletteGameSceneProps> = ({}) => {
   // импорт звуков
@@ -28,14 +29,13 @@ const RouletteGameScene: FC<IRouletteGameSceneProps> = ({}) => {
   useEffect(() => {
     (async () => {
       await PIXI.Assets.load(SOUNDS_ROULETTE.BG);
-      sound.volume(SOUNDS_ROULETTE.BG, 0.2);
+      sound.volume(SOUNDS_ROULETTE.BG, 0.03);
       sound.play(SOUNDS_ROULETTE.BG);
     })();
   }, []);
 
   return (
     <div className="flex flex-col items-center">
-      <div>Title Games</div>
       <div className="rounded-3xl shadow-2xl shadow-black overflow-hidden">
         <GameSceneActionsProvider>
           <GameSceneUI>

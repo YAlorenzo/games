@@ -1,38 +1,61 @@
 import React, { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/store/hook";
-import { selectRouletteSpinCurrentNumber, setRouletteSpinStartSpeed } from "../../slice/rouletteSpinSlice";
-import { RouletteLifecycle, RouletteWinOrLose,  selectRouletteLifecycle, selectRouletteWinOrLose, setRouletteLifecycle } from "../../slice/rouletteSlice";
+import {
+  selectRouletteSpinCurrentNumber,
+  setRouletteSpinStartSpeed,
+} from "../../slice/rouletteSpinSlice";
+import {
+  RouletteLifecycle,
+  // RouletteWinOrLose,
+  selectActiveNumber,
+  selectCurrentBet,
+  selectRouletteLifecycle,
+  setRouletteBetReady,
+  // selectRouletteWinOrLose,
+  setRouletteLifecycle,
+  setRouletteNumberReady,
+} from "../../slice/rouletteSlice";
 import RouletteStartButton from "../../shared/button/RouletteStartButton";
 import { sound } from "@pixi/sound";
 import SOUNDS_ROULETTE from "../../scenes/GameScene/config";
 
 interface IEventPanelProps {}
 
-const EventPanel: FC<IEventPanelProps> = ({ }) => {
+const EventPanel: FC<IEventPanelProps> = ({}) => {
   const lifecycle = useAppSelector(selectRouletteLifecycle);
-  const winOrLose = useAppSelector(selectRouletteWinOrLose);
+  // const winOrLose = useAppSelector(selectRouletteWinOrLose);
   const currentNumber = useAppSelector(selectRouletteSpinCurrentNumber);
+  const currentBet = useAppSelector(selectCurrentBet);
+  const activeNumber = useAppSelector(selectActiveNumber);
   const dispatch = useAppDispatch();
 
   const onStart = () => {
-    sound.play(SOUNDS_ROULETTE.SPIN);
-    dispatch(setRouletteSpinStartSpeed());
-    dispatch(setRouletteLifecycle(RouletteLifecycle.PLAY));
+    if (activeNumber === null) {
+      dispatch(setRouletteNumberReady(false));
+    } else if (currentBet === 0) {
+       dispatch(setRouletteBetReady(false));
+    } else {
+      sound.play(SOUNDS_ROULETTE.SPIN);
+      dispatch(setRouletteSpinStartSpeed());
+      dispatch(setRouletteLifecycle(RouletteLifecycle.PLAY));
     }
+  };
   return (
-    <div>
+    <div className="mt-5 flex justify-center items-center w-[250px] mx-auto text-[25px]">
       {lifecycle === RouletteLifecycle.READT_TO_START && (
         <RouletteStartButton onClick={onStart} />
       )}
-      {lifecycle === RouletteLifecycle.PLAY && <div>Play...</div>}
+      {lifecycle === RouletteLifecycle.PLAY && (
+        <div className="text-[35px]">Play...</div>
+      )}
       {lifecycle === RouletteLifecycle.FINISHED && <div>Call</div>}
       {lifecycle === RouletteLifecycle.INFO && (
         <div className="flex gap-4">
-          <div>
-            {winOrLose === RouletteWinOrLose.WIN && "Win"}
-            {winOrLose === RouletteWinOrLose.LOSE && "Lose"}
-          </div>
-          <div>{ currentNumber }</div>
+          <div className="text-[25px]">The number came up: {currentNumber}</div>
+          {/* <div>
+            {winOrLose === RouletteWinOrLose.WIN && "You Win"}
+            {winOrLose === RouletteWinOrLose.LOSE && "You Lose"}
+          </div> */}
         </div>
       )}
     </div>

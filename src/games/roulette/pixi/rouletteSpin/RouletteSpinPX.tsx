@@ -26,15 +26,13 @@ import SOUNDS_ROULETTE from "../../scenes/GameScene/config";
 interface IRouletteSpinPXProps {}
 
 const POSITION_SPIN = {
-  // x: 200,
-  // y: 300,
 
   x: 264,
-  y: 286,
+  y: 336,
 };
 const POSITION_ARROW = {
   x: 264,
-  y: 160,
+  y: 210,
   rotation: -0.45,
 };
 
@@ -65,7 +63,7 @@ const RouletteSpinPX: FC<IRouletteSpinPXProps> = ({}) => {
   });
   return (
     <Container>
-      <Sprite x={425} y={500} anchor={1} image={bgRoulette} />
+      <Sprite x={425} y={550} anchor={1} image={bgRoulette} />
       <Sprite
         image={externalCircle}
         x={POSITION_SPIN.x}
