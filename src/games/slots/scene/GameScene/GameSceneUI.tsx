@@ -9,8 +9,8 @@ interface ISlotGameSceneUIProps {
 
 const SlotGameSceneUI: FC<ISlotGameSceneUIProps> = ({ children }) => {
   return (
-    <div className="relative">
-      <div className="absolute left-[50%] bottom-[3%]  translate-x-[-50%]">
+    <div className="relative passion-one-regular">
+      <div className="absolute left-[50%] bottom-[3%] translate-x-[-50%]">
         <SlotBetsPanel />
       </div>
       <div className="absolute left-[3%] top-[30%]">

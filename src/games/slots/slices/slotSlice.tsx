@@ -23,7 +23,8 @@ interface ISlot {
   lifecycle: `${SlotLifecycle}`;
   rows: ISlotRow[];
   winOrLose: `${SlotWinOrLose}` | null;
-  currentBet: number
+  currentBet: number;
+  slotReadyToStart: boolean;
 }
 const initialState: ISlot = {
   lifecycle: SlotLifecycle.READY_TO_START,
@@ -43,6 +44,7 @@ const initialState: ISlot = {
   ],
   winOrLose: null,
   currentBet: 0,
+  slotReadyToStart: true,
 };
 
 const slotSlice = createSlice({
@@ -71,14 +73,20 @@ const slotSlice = createSlice({
         state.currentBet = state.currentBet + action.payload;
       }
     },
+    setSlotRefreshBet: (state, action: PayloadAction<boolean>) => {
+      if (action.payload) {
+        state.currentBet = 0;
+      }
+    }
   },
 });
 
-export const { setSlotLifecycle, startSlot, setSlotCurrentBet} = slotSlice.actions;
+export const { setSlotLifecycle, startSlot, setSlotCurrentBet, setSlotRefreshBet} = slotSlice.actions;
 
 export const selectSlotLifecycle = (state: RootState) => state.slot.lifecycle;
 export const selectSlotRows = (state: RootState) => state.slot.rows;
 export const selectSlotCurrentBet = (state: RootState) => state.slot.currentBet;
 export const selectSlotWinOrLose = (state: RootState) => state.slot.winOrLose;
+// export const selectSlotRefreshBet = (state: RootState) => state.slot.
 
 export default slotSlice.reducer;

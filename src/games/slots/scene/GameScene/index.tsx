@@ -10,7 +10,7 @@ import BodyPX from "../../pixi/body/BodyPX";
 
 interface ISlotGameSceneProps {}
 
-const [width, height] = [1150, 500];
+const [width, height] = [1150, 550];
 
 const SlotGameScene: FC<ISlotGameSceneProps> = ({}) => {
   return (
@@ -19,7 +19,7 @@ const SlotGameScene: FC<ISlotGameSceneProps> = ({}) => {
         width,
         height,
       }}
-      className={twMerge("flex justify-center items-center", styles.table)}
+      className={twMerge("flex justify-center items-center top-[10%]", styles.table)}
     >
       <SlotLifecycleProvider>
         <BalanceProvider>

@@ -18,6 +18,8 @@ import {
 import RouletteStartButton from "../../shared/button/RouletteStartButton";
 import { sound } from "@pixi/sound";
 import SOUNDS_ROULETTE from "../../scenes/GameScene/config";
+import { selectBalance } from "../../../../entities/wallet/slices/walletSlice";
+import Notiflix from "notiflix";
 
 interface IEventPanelProps {}
 
@@ -26,11 +28,15 @@ const EventPanel: FC<IEventPanelProps> = ({}) => {
   // const winOrLose = useAppSelector(selectRouletteWinOrLose);
   const currentNumber = useAppSelector(selectRouletteSpinCurrentNumber);
   const currentBet = useAppSelector(selectCurrentBet);
+  const balence = useAppSelector(selectBalance);
   const activeNumber = useAppSelector(selectActiveNumber);
   const dispatch = useAppDispatch();
 
   const onStart = () => {
-    if (activeNumber === null) {
+    if (currentBet > balence) {
+       Notiflix.Notify.failure("Bet is more than balance!");
+    }
+    else if (activeNumber === null) {
       dispatch(setRouletteNumberReady(false));
     } else if (currentBet === 0) {
        dispatch(setRouletteBetReady(false));

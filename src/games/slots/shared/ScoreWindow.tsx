@@ -10,7 +10,7 @@ interface IScoreWindowProps {
 
 const SlotScoreWindow: FC<IScoreWindowProps> = ({ children, icon }) => {
   return (
-    <div className="relative font-sans text-[35px]">
+    <div className="relative font-sans text-[35px] passion-one-regular">
       <svg
         width="262"
         height="63"

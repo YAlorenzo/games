@@ -2,23 +2,40 @@ import React, { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/store/hook";
 import {
   SlotLifecycle,
+  selectSlotCurrentBet,
   selectSlotLifecycle,
   selectSlotWinOrLose,
   startSlot,
 } from "../../slices/slotSlice";
 import { twMerge } from "tailwind-merge";
 import { button, handle, loseP, spin, win } from "../../../../assets/slot/info";
+import { selectBalance } from "../../../../entities/wallet/slices/walletSlice";
+import Notiflix from "notiflix";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 interface ISlotEventPanelProps {}
 
-const SlotEventPanel: FC<ISlotEventPanelProps> = ({}) => {
+const SlotEventPanel: FC<ISlotEventPanelProps> = ({ }) => {
   const lifecycle = useAppSelector(selectSlotLifecycle);
   const winOrLose = useAppSelector(selectSlotWinOrLose);
+  const currentBet = useAppSelector(selectSlotCurrentBet);
+  const balance = useAppSelector(selectBalance);
+ 
 
   const isReadyToStart = lifecycle === SlotLifecycle.READY_TO_START;
   const dispatch = useAppDispatch();
   const onStart = () => {
-    dispatch(startSlot());
+    if (currentBet > balance) {
+      
+      Notiflix.Notify.failure("Bet is more than balance!");
+    }
+    else if (currentBet === 0) {
+      Notiflix.Notify.failure("You didn't place a bet!");
+    }
+    else {
+        dispatch(startSlot());
+    }
   };
   return (
     <div className="flex flex-col justify-between h-[300px] w-[150px]">

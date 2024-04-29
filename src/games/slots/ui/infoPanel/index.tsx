@@ -20,7 +20,7 @@ const SlotInfoPanel: FC<ISlotInfoPanelProps> = ({ }) => {
     
   }, [isInfo, balance])
     return (
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 ">
         <SlotScoreWindow icon="balance">{displayBalance ?? 0}</SlotScoreWindow>
         <SlotScoreWindow icon="bets">{currentBet ?? 0}</SlotScoreWindow>
       </div>

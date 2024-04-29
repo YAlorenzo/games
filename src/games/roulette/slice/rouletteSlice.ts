@@ -36,8 +36,6 @@ const initialState: InitialState = {
   betReady: true,
 };
 
-
-
 const rouletteSlice = createSlice({
   initialState,
   name: "roulette",
@@ -48,8 +46,7 @@ const rouletteSlice = createSlice({
     setCurrentBet: (state, action: PayloadAction<number>) => {
       if (state.currentBet + action.payload < 0) {
         state.currentBet = 0;
-      }
-      else {
+      } else {
         state.currentBet = state.currentBet + action.payload;
       }
     },
@@ -61,23 +58,22 @@ const rouletteSlice = createSlice({
       action: PayloadAction<RouletteWinOrLose | null>
     ) => {
       state.winOfLose = action.payload;
-      },
-      clearRoulette: (state) => {
-          state.activeNumber = null;
-          state.currentBet = 0;
-    }
-    , setRouletteNumberReady: (
-      state,
-      action: PayloadAction<boolean>
-    ) => {
+    },
+    clearRoulette: (state) => {
+      state.activeNumber = null;
+      state.currentBet = 0;
+    },
+    setRouletteNumberReady: (state, action: PayloadAction<boolean>) => {
       state.numberReady = action.payload;
     },
-     setRouletteBetReady: (
-      state,
-      action: PayloadAction<boolean>
-    ) => {
+    setRouletteBetReady: (state, action: PayloadAction<boolean>) => {
       state.betReady = action.payload;
-    }
+    },
+    setRouletteRefreshBet: (state, action: PayloadAction<boolean>) => {
+      if (action.payload) {
+        state.currentBet = 0;
+      }
+    },
   },
 });
 
@@ -89,14 +85,20 @@ export const {
   clearRoulette,
   setRouletteBetReady,
   setRouletteNumberReady,
+  setRouletteRefreshBet
 } = rouletteSlice.actions;
 
-export const selectActiveNumber = (state: RootState) => state.roulette.activeNumber;
+export const selectActiveNumber = (state: RootState) =>
+  state.roulette.activeNumber;
 export const selectCurrentBet = (state: RootState) => state.roulette.currentBet;
-export const selectRouletteLifecycle = (state: RootState) => state.roulette.lifecycle;
+export const selectRouletteLifecycle = (state: RootState) =>
+  state.roulette.lifecycle;
 export const selectRouletteWinBet = (state: RootState) => state.roulette.winBet;
-export const selectRouletteWinOrLose = (state: RootState) => state.roulette.winOfLose;
-export const selectRouletteNumberReady = (state: RootState) => state.roulette.numberReady;
-export const selectRouletteBetReady = (state: RootState) => state.roulette.betReady;
+export const selectRouletteWinOrLose = (state: RootState) =>
+  state.roulette.winOfLose;
+export const selectRouletteNumberReady = (state: RootState) =>
+  state.roulette.numberReady;
+export const selectRouletteBetReady = (state: RootState) =>
+  state.roulette.betReady;
 
 export default rouletteSlice.reducer;
