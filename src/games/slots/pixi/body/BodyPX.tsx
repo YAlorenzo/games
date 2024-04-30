@@ -13,7 +13,7 @@ const BodyPX: FC<IBodyPXProps> = () => {
 
       <Sprite image={lineImage} x={380} y={75} />
       <Sprite image={lineImage} x={510} y={75} />
-      <Sprite image={lineImage} x={640} y={75} />
+      <Sprite image={lineImage} x={630} y={75} />
       <Sprite image={lineImage} x={770} y={75} />
     </Container>
   );

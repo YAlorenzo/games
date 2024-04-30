@@ -12,6 +12,7 @@ import SOUNDS_ROULETTE from "../../../roulette/scenes/GameScene/config";
 import { sound } from "@pixi/sound";
 import { selectBalance } from "../../../../entities/wallet/slices/walletSlice";
 import { refreshIcon } from "../../../../assets/main";
+import SOUNDS_SLOTS from "../../scene/GameScene/config";
 
 interface ISlotBetsPanelProps {}
 
@@ -41,8 +42,9 @@ const BETS = [
 const SlotBetsPanel: FC<ISlotBetsPanelProps> = ({}) => {
   const dispatch = useAppDispatch();
   const pickBet = (value: number) => {
-    // sound.play(SOUNDS_ROULETTE.BET);
-      dispatch(setSlotCurrentBet(value)); 
+    
+    dispatch(setSlotCurrentBet(value)); 
+    sound.play(SOUNDS_SLOTS.BET);
   };
   const refreshBet = (value: boolean) => {
 

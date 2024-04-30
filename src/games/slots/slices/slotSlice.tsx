@@ -62,6 +62,7 @@ const slotSlice = createSlice({
       }));
       const arrayActiveItemsID = state.rows.map((row) => row.activeItemID);
       const firstItem = arrayActiveItemsID[0];
+     
 
       const win = arrayActiveItemsID.every((elem) => elem === firstItem);
       state.winOrLose = win ? SlotWinOrLose.WIN : SlotWinOrLose.LOSE;

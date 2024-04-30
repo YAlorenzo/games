@@ -1,9 +1,11 @@
-import { FC, useEffect, useMemo, useRef, useState } from "react";
+import React, { FC, useMemo } from "react";
 import RowPX from "./RowPX";
 import { SLOT_ROW, TSlotRow } from "./utils";
 import { Container, Graphics } from "@pixi/react";
 import { useAppSelector } from "../../../../app/store/hook";
 import { selectSlotRows } from "../../slices/slotSlice";
+import { useRef, useEffect } from "react";
+import { useState } from "react";
 
 interface IRowsPXProps {}
 
@@ -15,20 +17,23 @@ const generateRandomRow = (slotRow: TSlotRow[]) => {
 };
 
 const RowsPX: FC<IRowsPXProps> = ({}) => {
-  const rows = useAppSelector(selectSlotRows);
   const [loading, setLoading] = useState(false);
+  const rows = useAppSelector(selectSlotRows);
 
   const firstSlotRow = useMemo(() => generateRandomRow(SLOT_ROW), []);
   const secondSlotRow = useMemo(() => generateRandomRow(SLOT_ROW), []);
   const thirdSlotRow = useMemo(() => generateRandomRow(SLOT_ROW), []);
 
   const slotRows = [firstSlotRow, secondSlotRow, thirdSlotRow];
+
   const mask = useRef(null);
+
   useEffect(() => {
     setLoading(true);
   }, []);
+
   return (
-    <Container x={450} y={30} mask={mask?.current}>
+    <Container x={450} y={50} mask={mask?.current}>
       <Graphics
         draw={(g) => {
           g.beginFill(0x000000);

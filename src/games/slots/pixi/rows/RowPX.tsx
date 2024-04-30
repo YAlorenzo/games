@@ -1,8 +1,11 @@
 import { Container, Sprite, useTick } from "@pixi/react";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { TSlotRow } from "./utils";
+import { useState } from "react";
 import { useAppSelector } from "../../../../app/store/hook";
-import { selectSlotLifecycle, SlotLifecycle } from "../../slices/slotSlice";
+import { SlotLifecycle, selectSlotLifecycle } from "../../slices/slotSlice";
+import { sound } from "@pixi/sound";
+import SOUNDS_SLOTS from "../../scene/GameScene/config";
 
 interface IRowPXProps {
   rowID: number;
@@ -14,10 +17,10 @@ const ITEM_HEIGHT = 100;
 const SPEED = 40;
 const DELTA_ALIGN_CENTER = 200;
 
-const RowPX: FC<IRowPXProps> = ({ slotRow, rowID, activeItemID }) => {
-  const lifecycle = useAppSelector(selectSlotLifecycle);
-  const isStopping = lifecycle === SlotLifecycle.STOPPING;
-  const isPlaying = lifecycle === SlotLifecycle.PLAY;
+const RowPX: FC<IRowPXProps> = ({ slotRow, activeItemID, rowID }) => {
+  const lifecylce = useAppSelector(selectSlotLifecycle);
+  const isStopping = lifecylce === SlotLifecycle.STOPPING;
+  const isPlaying = lifecylce === SlotLifecycle.PLAY;
 
   const FULL_HEIGHT_ROW = slotRow.length * ITEM_HEIGHT;
   const currentIndexRowItem = slotRow.findIndex(
@@ -29,7 +32,6 @@ const RowPX: FC<IRowPXProps> = ({ slotRow, rowID, activeItemID }) => {
   );
   const startPosition = currentPosition - FULL_HEIGHT_ROW;
   const speed = isStopping || isPlaying ? SPEED : 0;
-  // console.log(speed, lifecycle);
 
   const [position, setPosition] = useState(-FULL_HEIGHT_ROW);
   const [fixPosition, setFixPosition] = useState(false);
@@ -44,19 +46,34 @@ const RowPX: FC<IRowPXProps> = ({ slotRow, rowID, activeItemID }) => {
     if (isStopping && !fixPosition) {
       setPosition(startPosition);
       setFixPosition(true);
+     
     }
     if (isStopping && fixPosition) {
-      const koeFC = currentPosition - position;
-      if (koeFC > 0) {
+      const koefC = currentPosition - position;
+      
+      
+      if (koefC > 0) {
         setPosition(position + speed * delta);
       } else {
         setPosition(currentPosition);
+
+
+        // звуки!
+        // if (winOrLose === "win") {
+         
+        //   console.log('победа!')
+        // }
+        // else {
+        //    sound.play(SOUNDS_SLOTS.BET);
+        //   console.log("проигрыш!");
+        // }
+         sound.stop(SOUNDS_SLOTS.SPIN);
       }
     }
   });
   return (
     <Container x={(rowID - 1) * 120} y={position}>
-      {/* FAKE TOP ROW */}
+      {/* Fake top row */}
       <Container y={-FULL_HEIGHT_ROW}>
         {slotRow.map((row, idx) => (
           <Sprite
@@ -69,8 +86,8 @@ const RowPX: FC<IRowPXProps> = ({ slotRow, rowID, activeItemID }) => {
           />
         ))}
       </Container>
+      {/* END Fake top row */}
 
-      {/* MAIN ROW */}
       <Container>
         {slotRow.map((row, idx) => (
           <Sprite
@@ -84,7 +101,7 @@ const RowPX: FC<IRowPXProps> = ({ slotRow, rowID, activeItemID }) => {
         ))}
       </Container>
 
-      {/* FAKE BOTTOM ROW */}
+      {/* Bottom fake row */}
       <Container y={FULL_HEIGHT_ROW}>
         {slotRow.map((row, idx) => (
           <Sprite
@@ -97,6 +114,7 @@ const RowPX: FC<IRowPXProps> = ({ slotRow, rowID, activeItemID }) => {
           />
         ))}
       </Container>
+      {/* END Bottom fake row */}
     </Container>
   );
 };

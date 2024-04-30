@@ -20,7 +20,7 @@ const SlotLifecycleProvider: FC<ISlotLifecycleProviderProps> = ({
     if (lifecycle === SlotLifecycle.PLAY) {
       const stopping = setTimeout(() => {
         dispatch(setSlotLifecycle(SlotLifecycle.STOPPING));
-      }, 2000);
+      }, 3000);
 
       return () => clearTimeout(stopping);
     }
@@ -30,7 +30,7 @@ const SlotLifecycleProvider: FC<ISlotLifecycleProviderProps> = ({
     if (lifecycle === SlotLifecycle.STOPPING) {
       const stop = setTimeout(() => {
         dispatch(setSlotLifecycle(SlotLifecycle.STOP));
-      }, 3000);
+      }, 1000);
 
       return () => clearTimeout(stop);
     }
@@ -46,7 +46,7 @@ const SlotLifecycleProvider: FC<ISlotLifecycleProviderProps> = ({
     if (lifecycle === SlotLifecycle.INFO) {
       setTimeout(() => {
         dispatch(setSlotLifecycle(SlotLifecycle.READY_TO_START));
-      }, 3000);
+      }, 2000);
     }
   }, [lifecycle, dispatch]);
   return <>{children}</>;

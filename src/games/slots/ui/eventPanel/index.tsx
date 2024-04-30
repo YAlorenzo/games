@@ -12,6 +12,10 @@ import { button, handle, loseP, spin, win } from "../../../../assets/slot/info";
 import { selectBalance } from "../../../../entities/wallet/slices/walletSlice";
 import Notiflix from "notiflix";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { sound } from "@pixi/sound";
+import SOUNDS_SLOTS from "../../scene/GameScene/config";
+import WinCase from "./WinCase";
+import LoseCase from "./LoseCase";
 
 
 interface ISlotEventPanelProps {}
@@ -25,16 +29,19 @@ const SlotEventPanel: FC<ISlotEventPanelProps> = ({ }) => {
 
   const isReadyToStart = lifecycle === SlotLifecycle.READY_TO_START;
   const dispatch = useAppDispatch();
+  // if (winOrLose !== "win") {
+  //   sound.play(SOUNDS_SLOTS.WIN);
+  // }
   const onStart = () => {
     if (currentBet > balance) {
-      
       Notiflix.Notify.failure("Bet is more than balance!");
     }
     else if (currentBet === 0) {
       Notiflix.Notify.failure("You didn't place a bet!");
     }
-    else {
-        dispatch(startSlot());
+    else if (isReadyToStart) {
+      sound.play(SOUNDS_SLOTS.SPIN);
+      dispatch(startSlot());
     }
   };
   return (
@@ -42,8 +49,8 @@ const SlotEventPanel: FC<ISlotEventPanelProps> = ({ }) => {
       <div>
         {lifecycle === SlotLifecycle.INFO && (
           <div>
-            {winOrLose === "win" && <img src={win} />}
-            {winOrLose !== "win" && <img src={loseP} />}
+            {winOrLose === "win" && <WinCase />}
+            {winOrLose !== "win" && <LoseCase />}
           </div>
         )}
       </div>
