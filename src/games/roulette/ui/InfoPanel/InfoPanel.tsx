@@ -1,11 +1,17 @@
 import React, { FC } from "react";
 import { useAppSelector } from "../../../../app/store/hook";
 import {
+  RouletteLifecycle,
+  RouletteWinOrLose,
   selectActiveNumber,
   selectCurrentBet,
+  selectRouletteLifecycle,
+  selectRouletteWinOrLose,
 } from "../../slice/rouletteSlice";
 import { selectBalance } from "../../../../entities/wallet/slices/walletSlice";
 import ScoreWindow from "../../shared/scoreWindow";
+import ResultOfBalance from "./ResultOfBalance";
+
 
 interface IInfoPanelProps {}
 
@@ -42,21 +48,47 @@ const InfoPanel: FC<IInfoPanelProps> = ({ }) => {
   const balance = useAppSelector(selectBalance);
   const activeNumber = useAppSelector(selectActiveNumber);
   const currentBet = useAppSelector(selectCurrentBet);
+  const winOrLose = useAppSelector(selectRouletteWinOrLose);
+  const lifecycle = useAppSelector(selectRouletteLifecycle);
   const winBet = currentBet * 36;
+
   return (
     <div className="flex justify-between px-10">
       {ITEMS.map((item) => (
         <div key={item.id}>
-          <div className="text-[25px]">{item.title}</div>
+          <div className="text-[25px] flex justify-between relative">
+            {item.title}
+
+            {item.id === "balance" &&
+              lifecycle === RouletteLifecycle.INFO &&
+              winOrLose === RouletteWinOrLose.LOSE && (
+                <ResultOfBalance
+                  win={false}
+                  currentBet={currentBet}
+                  winBet={winBet}
+                />
+              )}
+            {item.id === "balance" &&
+              lifecycle === RouletteLifecycle.INFO &&
+              winOrLose === RouletteWinOrLose.WIN && (
+                <ResultOfBalance
+                  win={true}
+                  currentBet={currentBet}
+                  winBet={winBet}
+                />
+              )}
+          </div>
           <div>
             {item.id === "balance" && (
-              <ScoreWindow icon="balance">{balance}</ScoreWindow>
+              <div>
+                <ScoreWindow icon="balance">{balance}</ScoreWindow>
+              </div>
             )}
             {item.id === "winBet" && (
               <ScoreWindow icon="winBet">
-                <div className="pr-1">{winBet !== 0 ? ("+" + winBet) : (
-                 winBet
-                )}</div>
+                <div className="pr-1">
+                  {winBet !== 0 ? "+" + winBet : winBet}
+                </div>
               </ScoreWindow>
             )}
             {item.id === "currentBet" && (

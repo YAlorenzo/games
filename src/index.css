@@ -21,3 +21,11 @@
   background-repeat: no-repeat; 
   background-size: cover;
 }
+.text-resultOfBalance__lose{
+  color: #CA0004; /* Цвет текста */
+  -webkit-text-stroke: 1px white; /* Обводка текста (ширина и цвет) */
+}
+.text-resultOfBalance__win{
+  color: #22c204; /* Цвет текста */
+  -webkit-text-stroke: 1px white; /* Обводка текста (ширина и цвет) */
+}

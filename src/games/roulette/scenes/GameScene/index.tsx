@@ -14,6 +14,7 @@ import {
 } from "../../../../assets/sounds/roulette";
 import SOUNDS_ROULETTE from "./config";
 import * as PIXI from "pixi.js";
+import SOUNDS_SLOTS from "../../../slots/scene/GameScene/config";
 
 interface IRouletteGameSceneProps {}
 
@@ -29,8 +30,10 @@ const RouletteGameScene: FC<IRouletteGameSceneProps> = ({}) => {
   useEffect(() => {
     (async () => {
       await PIXI.Assets.load(SOUNDS_ROULETTE.BG);
-      sound.volume(SOUNDS_ROULETTE.BG, 0.03);
-      sound.play(SOUNDS_ROULETTE.BG);
+      sound.volume(SOUNDS_ROULETTE.BG, 0);
+      const soundBg = sound.find(SOUNDS_ROULETTE.BG);
+      soundBg.loop = true;
+      soundBg.play();
     })();
   }, []);
 

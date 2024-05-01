@@ -9,7 +9,8 @@ import { twMerge } from "tailwind-merge";
 import BodyPX from "../../pixi/body/BodyPX";
 import { sound } from "@pixi/sound";
 import SOUNDS_SLOTS from "./config";
-import { soundBet, soundLose, soundSpin, soundWin } from "../../../../assets/sounds/slots";
+import { soundBet, soundLose, soundSlotBg, soundSpin, soundWin } from "../../../../assets/sounds/slots";
+import * as PIXI from "pixi.js";
 
 
 interface ISlotGameSceneProps {}
@@ -22,6 +23,17 @@ const SlotGameScene: FC<ISlotGameSceneProps> = ({ }) => {
   sound.add(SOUNDS_SLOTS.BET, soundBet);
   sound.add(SOUNDS_SLOTS.WIN, soundWin);
   sound.add(SOUNDS_SLOTS.LOSE, soundLose);
+  sound.add(SOUNDS_SLOTS.BG, soundSlotBg);
+
+  useEffect(() => {
+    (async () => {
+      await PIXI.Assets.load(SOUNDS_SLOTS.BG);
+      sound.volume(SOUNDS_SLOTS.BG, 0.03);
+      const soundBg = sound.find(SOUNDS_SLOTS.BG);
+      soundBg.loop = true;
+      soundBg.play();
+    })();
+  }, []);
 
   
   return (
