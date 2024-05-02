@@ -20,7 +20,7 @@ const MainPage: FC<IMainPageProps> = ({}) => {
     sound.stopAll();
   }, []);
   return (
-    <div className="flex gap-4 justify-centerfont-bold passion-one-regular mt-9">
+    <div className="flex gap-4 justify-center justify-centerfont-bold  passion-one-regular mt-9">
       <div>
         <h2 className="uppercase text-[#22c204] text-center text-[35px]">
           Roulette

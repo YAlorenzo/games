@@ -7,7 +7,7 @@ import {
   bet800,
 } from "../../../../assets/roulette";
 import { useAppDispatch, useAppSelector } from "../../../../app/store/hook";
-import { selectSlotCurrentBet, selectSlotReadyToStart, setSlotCurrentBet, setSlotReadyToStart, setSlotRefreshBet } from "../../slices/slotSlice";
+import { selectSlotCurrentBet, selectSlotLifecycle, selectSlotReadyToStart, setSlotCurrentBet, setSlotReadyToStart, setSlotRefreshBet } from "../../slices/slotSlice";
 import SOUNDS_ROULETTE from "../../../roulette/scenes/GameScene/config";
 import { sound } from "@pixi/sound";
 import { selectBalance } from "../../../../entities/wallet/slices/walletSlice";
@@ -41,14 +41,16 @@ const BETS = [
 
 const SlotBetsPanel: FC<ISlotBetsPanelProps> = ({}) => {
   const dispatch = useAppDispatch();
+  const lifecycle = useAppSelector(selectSlotLifecycle);
   const pickBet = (value: number) => {
     
     dispatch(setSlotCurrentBet(value)); 
     sound.play(SOUNDS_SLOTS.BET);
   };
   const refreshBet = (value: boolean) => {
-
-    dispatch(setSlotRefreshBet(value));
+    if (lifecycle !== "play") {
+       dispatch(setSlotRefreshBet(value)); 
+    }
   };
   return (
     <div className="flex mx-auto">
