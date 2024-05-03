@@ -4,20 +4,36 @@ import { ROUTES } from "../../../app/router/utils";
 import CoreGameRoulette from "../../../games/roulette";
 import styles from '../../page.module.css';
 import { friendsButtonIcon, homeButtonIcon, settingButtonIcon } from "../../../assets/roulette";
+import { useAppDispatch, useAppSelector } from "../../../app/store/hook";
+import { selectModalSettingsActive, setModalSettingsActive } from "../../../games/roulette/slice/rouletteSlice";
 
 interface IRoulletePageProps {}
 
 const RoulletePage: FC<IRoulletePageProps> = ({ }) => {
+  // const modal = useAppSelector(selectModalSettingsActive);
+  const dispatch = useAppDispatch();
+  const openModal = () => {
+    dispatch(setModalSettingsActive());
+  }
+  // const closeModal = () => {
+  //   if (modal) {
+  //     dispatch(setModalSettingsActive());
+  //   }
+  // }
   return (
     <div className={styles.roulette}>
       <div className="max-w-[1300px] flex gap-4 justify-end mx-auto py-6">
         <Link to={ROUTES.main} className="font-bold">
-          <img src={homeButtonIcon} alt="icon"/>
+          <img src={homeButtonIcon} alt="icon" />
         </Link>
-        <img src={friendsButtonIcon} alt="icon" className="cursor-pointer"/>
-        <img src={settingButtonIcon} alt="icon" className="cursor-pointer"/>
+        <img src={friendsButtonIcon} alt="icon" className="cursor-pointer" />
+        <img
+          src={settingButtonIcon}
+          alt="icon"
+          className="cursor-pointer"
+          onClick={openModal}
+        />
       </div>
-
       <CoreGameRoulette />
     </div>
   );

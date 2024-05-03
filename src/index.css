@@ -29,3 +29,8 @@
   color: #22c204; /* Цвет текста */
   -webkit-text-stroke: 1px white; /* Обводка текста (ширина и цвет) */
 }
+.modal {
+  top: 0;
+  left: 50%; 
+  transform: translateX(-50%);
+}

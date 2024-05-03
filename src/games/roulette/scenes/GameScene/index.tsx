@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import RouletteSpinPX from "../../pixi/rouletteSpin/RouletteSpinPX";
 import GameSceneUI from "./GameSceneUI";
 import { Stage } from "../../../../app/config/contextBridge";
@@ -14,13 +14,14 @@ import {
 } from "../../../../assets/sounds/roulette";
 import SOUNDS_ROULETTE from "./config";
 import * as PIXI from "pixi.js";
-import SOUNDS_SLOTS from "../../../slots/scene/GameScene/config";
+import Modal from "../../ui/Modal/Modal";
 
 interface IRouletteGameSceneProps {}
 
 const [width, height] = [1300, 550];
 
-const RouletteGameScene: FC<IRouletteGameSceneProps> = ({}) => {
+const RouletteGameScene: FC<IRouletteGameSceneProps> = ({ }) => {
+
   // импорт звуков
   sound.add(SOUNDS_ROULETTE.BG, soundBg);
   sound.add(SOUNDS_ROULETTE.BET, soundBet);
@@ -30,32 +31,35 @@ const RouletteGameScene: FC<IRouletteGameSceneProps> = ({}) => {
   useEffect(() => {
     (async () => {
       await PIXI.Assets.load(SOUNDS_ROULETTE.BG);
-      sound.volume(SOUNDS_ROULETTE.BG, 0);
       const soundBg = sound.find(SOUNDS_ROULETTE.BG);
+      sound.volume(SOUNDS_ROULETTE.BG, 0.08);
       soundBg.loop = true;
       soundBg.play();
     })();
   }, []);
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="rounded-3xl shadow-2xl shadow-black overflow-hidden">
-        <GameSceneActionsProvider>
-          <GameSceneUI>
-            <Stage
-              width={width}
-              height={height}
-              options={{
-                background: "green",
-              }}
-            >
-              <BgPX />
-              <RouletteSpinPX />
-            </Stage>
-          </GameSceneUI>
-        </GameSceneActionsProvider>
+    <>
+      <div className="flex flex-col items-center">
+        <div className="rounded-3xl shadow-2xl shadow-black overflow-hidden">
+          <GameSceneActionsProvider>
+            <GameSceneUI>
+              <Stage
+                width={width}
+                height={height}
+                options={{
+                  background: "green",
+                }}
+              >
+                <BgPX />
+                <RouletteSpinPX />
+              </Stage>
+            </GameSceneUI>
+          </GameSceneActionsProvider>
+        </div>
+        <Modal />
       </div>
-    </div>
+    </>
   );
 };
 export default RouletteGameScene;

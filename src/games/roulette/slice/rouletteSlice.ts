@@ -24,6 +24,7 @@ interface InitialState {
   currentBet: number;
   numberReady: boolean;
   betReady: boolean;
+  modalSettingsActive: boolean;
 }
 
 const initialState: InitialState = {
@@ -34,6 +35,7 @@ const initialState: InitialState = {
   currentBet: 0,
   numberReady: true,
   betReady: true,
+  modalSettingsActive: false,
 };
 
 const rouletteSlice = createSlice({
@@ -74,6 +76,10 @@ const rouletteSlice = createSlice({
         state.currentBet = 0;
       }
     },
+
+    setModalSettingsActive: (state) => {
+      state.modalSettingsActive = !state.modalSettingsActive;
+    },
   },
 });
 
@@ -85,7 +91,8 @@ export const {
   clearRoulette,
   setRouletteBetReady,
   setRouletteNumberReady,
-  setRouletteRefreshBet
+  setRouletteRefreshBet,
+  setModalSettingsActive,
 } = rouletteSlice.actions;
 
 export const selectActiveNumber = (state: RootState) =>
@@ -100,5 +107,7 @@ export const selectRouletteNumberReady = (state: RootState) =>
   state.roulette.numberReady;
 export const selectRouletteBetReady = (state: RootState) =>
   state.roulette.betReady;
+export const selectModalSettingsActive = (state: RootState) =>
+  state.roulette.modalSettingsActive;
 
 export default rouletteSlice.reducer;

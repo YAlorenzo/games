@@ -4,6 +4,7 @@ import BetPanel from "../../ui/BetsPanel/BetsPanel";
 import InfoPanel from "../../ui/InfoPanel/InfoPanel";
 import EventPanel from "../../ui/EventPanel/EventPanel";
 import ButtonInfo from "../../shared/buttonInfo/ButtonInfo";
+import Modal from "../../ui/Modal/Modal";
 
 interface IGameSceneUIProps {
   children: ReactNode;
