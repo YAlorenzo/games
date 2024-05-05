@@ -13,6 +13,8 @@ import { sound } from "@pixi/sound";
 import { selectBalance } from "../../../../entities/wallet/slices/walletSlice";
 import { refreshIcon } from "../../../../assets/main";
 import SOUNDS_SLOTS from "../../scene/GameScene/config";
+import styles from "./styles.module.css";
+import { left_star, right_start } from "../../../../assets/slot/info";
 
 interface ISlotBetsPanelProps {}
 
@@ -41,41 +43,33 @@ const BETS = [
 
 const SlotBetsPanel: FC<ISlotBetsPanelProps> = ({}) => {
   const dispatch = useAppDispatch();
-  const lifecycle = useAppSelector(selectSlotLifecycle);
   const pickBet = (value: number) => {
-    
     dispatch(setSlotCurrentBet(value)); 
     sound.play(SOUNDS_SLOTS.BET);
   };
-  const refreshBet = (value: boolean) => {
-    if (lifecycle !== "play") {
-       dispatch(setSlotRefreshBet(value)); 
-    }
-  };
+ 
   return (
-    <div className="flex mx-auto">
-      <div className="flex  gap-3 justify-center items-center">
-        {BETS.map(({ value, image }) => (
-          <div
-            onClick={() => pickBet(value)}
-            onContextMenu={(e) => {
-              e.preventDefault();
-              pickBet(-value);
-            }}
-            key={value}
-            className="cursor-pointer hover:scale-[1.05] transition-all"
-          >
-            <img src={image} />
-          </div>
-        ))}
+    <div className="flex justify-between items-center">
+      <img src={left_star} alt="icon_star" />
+      <div className={styles.wrapper}>
+        <div className="flex gap-4 justify-center items-center">
+          {BETS.map(({ value, image }) => (
+            <div
+              onClick={() => pickBet(value)}
+              onContextMenu={(e) => {
+                e.preventDefault();
+                pickBet(-value);
+              }}
+              key={value}
+              className="cursor-pointer hover:scale-[1.05] transition-all"
+            >
+              <img src={image} />
+            </div>
+          ))}
+        </div>
       </div>
-      <img
-        src={refreshIcon}
-        alt="icon"
-        width="50px"
-        onClick={() => refreshBet(true)}
-        className="ml-14 cursor-pointer hover:scale-[1.05] transition-all"
-      />
+      <img src={right_start} alt="icon" />
+      
     </div>
   );
 };

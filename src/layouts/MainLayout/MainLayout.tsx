@@ -10,7 +10,7 @@ const MainLayout: FC<IMainLayoutProps> = ({}) => {
         <div className="w-full bg-[#101a0e] py-3">
             <div className="max-w-[1350px] h-[100px] mx-auto flex justify-between items-center">
                 <img src={logoYK} alt="icon" className="w-[90px]" />
-                <p className="text-white text-[20px]">v.0.0.2</p>
+                <p className="text-white text-[20px]">v.0.0.3</p>
           </div>
         </div>
         <Outlet />

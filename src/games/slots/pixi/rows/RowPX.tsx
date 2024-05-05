@@ -1,5 +1,5 @@
 import { Container, Sprite, useTick } from "@pixi/react";
-import { FC } from "react";
+import React, { FC } from "react";
 import { TSlotRow } from "./utils";
 import { useState } from "react";
 import { useAppSelector } from "../../../../app/store/hook";
@@ -46,35 +46,22 @@ const RowPX: FC<IRowPXProps> = ({ slotRow, activeItemID, rowID }) => {
     if (isStopping && !fixPosition) {
       setPosition(startPosition);
       setFixPosition(true);
-     
     }
+
     if (isStopping && fixPosition) {
       const koefC = currentPosition - position;
-      
-      
       if (koefC > 0) {
         setPosition(position + speed * delta);
       } else {
         setPosition(currentPosition);
-
-
-        // звуки!
-        // if (winOrLose === "win") {
-         
-        //   console.log('победа!')
-        // }
-        // else {
-        //    sound.play(SOUNDS_SLOTS.BET);
-        //   console.log("проигрыш!");
-        // }
-         sound.stop(SOUNDS_SLOTS.SPIN);
+        sound.stop(SOUNDS_SLOTS.SPIN);
       }
     }
   });
   return (
     <Container x={(rowID - 1) * 120} y={position}>
       {/* Fake top row */}
-      <Container y={-FULL_HEIGHT_ROW}>
+      <Container  y={-FULL_HEIGHT_ROW}>
         {slotRow.map((row, idx) => (
           <Sprite
             key={row.id}

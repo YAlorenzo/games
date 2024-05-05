@@ -45,7 +45,7 @@ const SlotEventPanel: FC<ISlotEventPanelProps> = ({ }) => {
     }
   };
   return (
-    <div className="flex flex-col justify-between h-[300px] w-[150px]">
+    <div className="flex flex-col justify-between  h-[300px] w-[150px]">
       <div>
         {lifecycle === SlotLifecycle.INFO && (
           <div>

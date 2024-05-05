@@ -1,11 +1,12 @@
 import React, { FC, useMemo } from "react";
 import RowPX from "./RowPX";
 import { SLOT_ROW, TSlotRow } from "./utils";
-import { Container, Graphics } from "@pixi/react";
+import { Container, Graphics, Sprite } from "@pixi/react";
 import { useAppSelector } from "../../../../app/store/hook";
 import { selectSlotRows } from "../../slices/slotSlice";
 import { useRef, useEffect } from "react";
 import { useState } from "react";
+
 
 interface IRowsPXProps {}
 
@@ -34,6 +35,7 @@ const RowsPX: FC<IRowsPXProps> = ({}) => {
 
   return (
     <Container x={450} y={50} mask={mask?.current}>
+     
       <Graphics
         draw={(g) => {
           g.beginFill(0x000000);

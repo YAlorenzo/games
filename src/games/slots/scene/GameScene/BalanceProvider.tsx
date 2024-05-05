@@ -8,7 +8,7 @@ interface IBalanceProviderProps {
     children: ReactNode
 }
 
-const KOEF_WIN = 10;
+const KOEF_WIN = 3;
 
 
 const BalanceProvider: FC<IBalanceProviderProps> = ({ children }) => {

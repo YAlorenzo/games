@@ -25,6 +25,7 @@ interface ISlot {
   winOrLose: `${SlotWinOrLose}` | null;
   currentBet: number;
   slotReadyToStart: boolean;
+  modalSettingsActive: boolean;
 }
 const initialState: ISlot = {
   lifecycle: SlotLifecycle.READY_TO_START,
@@ -45,6 +46,7 @@ const initialState: ISlot = {
   winOrLose: null,
   currentBet: 0,
   slotReadyToStart: true,
+  modalSettingsActive: false,
 };
 
 const slotSlice = createSlice({
@@ -59,10 +61,11 @@ const slotSlice = createSlice({
       state.rows = state.rows.map((row) => ({
         ...row,
         activeItemID: Math.ceil(Math.random() * 12),
+        // activeItemID: Math.floor(Math.pow(Math.random(), 2) * 12) 
+        //  --при таком условии вероятность победы НО работает не правильно ~ 18.33%
       }));
       const arrayActiveItemsID = state.rows.map((row) => row.activeItemID);
       const firstItem = arrayActiveItemsID[0];
-     
 
       const win = arrayActiveItemsID.every((elem) => elem === firstItem);
       state.winOrLose = win ? SlotWinOrLose.WIN : SlotWinOrLose.LOSE;
@@ -78,16 +81,20 @@ const slotSlice = createSlice({
       if (action.payload) {
         state.currentBet = 0;
       }
-    }
+    },
+    setModalSettingsActive: (state) => {
+      state.modalSettingsActive = !state.modalSettingsActive;
+    },
   },
 });
 
-export const { setSlotLifecycle, startSlot, setSlotCurrentBet, setSlotRefreshBet} = slotSlice.actions;
+export const { setSlotLifecycle, startSlot, setSlotCurrentBet, setSlotRefreshBet, setModalSettingsActive} = slotSlice.actions;
 
 export const selectSlotLifecycle = (state: RootState) => state.slot.lifecycle;
 export const selectSlotRows = (state: RootState) => state.slot.rows;
 export const selectSlotCurrentBet = (state: RootState) => state.slot.currentBet;
 export const selectSlotWinOrLose = (state: RootState) => state.slot.winOrLose;
+export const selectModalSettingsActive = (state: RootState) => state.slot.modalSettingsActive;
 // export const selectSlotRefreshBet = (state: RootState) => state.slot.
 
 export default slotSlice.reducer;

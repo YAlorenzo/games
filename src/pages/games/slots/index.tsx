@@ -6,10 +6,18 @@ import titleImage from "../../../assets/slot/title.svg";
 import { friendsButtonIcon, homeButtonIcon, settingButtonIcon } from "../../../assets/roulette";
 import { ROUTES } from "../../../app/router/utils";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../../app/store/hook";
+import { setModalSettingsActive } from "../../../games/slots/slices/slotSlice";
+
 
 interface ISlotsPageProps {}
 
-const SlotsPage: FC<ISlotsPageProps> = ({}) => {
+const SlotsPage: FC<ISlotsPageProps> = ({ }) => {
+  
+  const dispatch = useAppDispatch();
+  const openModal = () => {
+    dispatch(setModalSettingsActive());
+  };
   return (
     <div>
       <div
@@ -27,7 +35,7 @@ const SlotsPage: FC<ISlotsPageProps> = ({}) => {
             <img src={homeButtonIcon} alt="icon" />
           </Link>
           <img src={friendsButtonIcon} alt="icon" className="cursor-pointer" />
-          <img src={settingButtonIcon} alt="icon" className="cursor-pointer" />
+          <img src={settingButtonIcon} alt="icon" className="cursor-pointer" onClick={openModal}/>
         </div>
         <CoreGameSlots />
       </div>

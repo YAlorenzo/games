@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react'
-import { loseP } from '../../../../assets/slot/info';
+import { win } from '../../../../assets/slot/info';
 import { sound } from '@pixi/sound';
 import SOUNDS_SLOTS from '../../scene/GameScene/config';
 
@@ -12,7 +12,7 @@ const WinCase: FC<WinCaseProps> = ({ }) => {
         sound.play(SOUNDS_SLOTS.WIN);
     }, [])
     return (
-        <img src={loseP} />
+        <img src={win} />
     );
 }
 

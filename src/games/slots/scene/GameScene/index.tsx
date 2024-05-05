@@ -11,7 +11,10 @@ import { sound } from "@pixi/sound";
 import SOUNDS_SLOTS from "./config";
 import { soundBet, soundLose, soundSlotBg, soundSpin, soundWin } from "../../../../assets/sounds/slots";
 import * as PIXI from "pixi.js";
-
+import Modal from "../../ui/Modal/Modal";
+import { Container, Sprite } from "@pixi/react";
+import bodyImage from "../../../../assets/slot/body.svg";
+import centralLine from "../../../../assets/slot/centralLine.svg";
 
 interface ISlotGameSceneProps {}
 
@@ -57,12 +60,17 @@ const SlotGameScene: FC<ISlotGameSceneProps> = ({ }) => {
                 background: "rgba(46, 29, 51, 0.96)",
               }}
             >
-              <BodyPX />
-              <RowsPX />
+              <Container>
+                <Sprite x={575} y={250} image={bodyImage} anchor={0.5} />
+                <RowsPX />
+                <BodyPX />
+                <Sprite image={centralLine} x={380} y={250} />
+              </Container>
             </Stage>
           </SlotGameSceneUI>
         </BalanceProvider>
       </SlotLifecycleProvider>
+      <Modal />
     </div>
   );
 };
