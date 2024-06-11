@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/store/hook";
 import {
   selectRouletteSpinCurrentNumber,
@@ -6,12 +6,10 @@ import {
 } from "../../slice/rouletteSpinSlice";
 import {
   RouletteLifecycle,
-  // RouletteWinOrLose,
   selectActiveNumber,
   selectCurrentBet,
   selectRouletteLifecycle,
   setRouletteBetReady,
-  // selectRouletteWinOrLose,
   setRouletteLifecycle,
   setRouletteNumberReady,
 } from "../../slice/rouletteSlice";
@@ -23,9 +21,9 @@ import Notiflix from "notiflix";
 
 interface IEventPanelProps {}
 
+// eslint-disable-next-line no-empty-pattern
 const EventPanel: FC<IEventPanelProps> = ({}) => {
   const lifecycle = useAppSelector(selectRouletteLifecycle);
-  // const winOrLose = useAppSelector(selectRouletteWinOrLose);
   const currentNumber = useAppSelector(selectRouletteSpinCurrentNumber);
   const currentBet = useAppSelector(selectCurrentBet);
   const balence = useAppSelector(selectBalance);

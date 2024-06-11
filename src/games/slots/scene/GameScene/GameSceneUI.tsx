@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import SlotBetsPanel from "../../ui/betsPanel";
 import SlotInfoPanel from "../../ui/infoPanel";
 import SlotEventPanel from "../../ui/eventPanel";

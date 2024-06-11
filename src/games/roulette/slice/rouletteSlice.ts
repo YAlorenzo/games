@@ -1,8 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../../app/store";
-import { useAppSelector } from "../../../app/store/hook";
-import { selectBalance } from "../../../entities/wallet/slices/walletSlice";
-import { act } from "react-dom/test-utils";
 
 export enum RouletteLifecycle {
   READT_TO_START = "start",

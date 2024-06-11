@@ -7,6 +7,7 @@ interface RefreshBalanceProps {
   
 }
 
+// eslint-disable-next-line no-empty-pattern
 const RefreshBalance: FC<RefreshBalanceProps> = ({ }) => {
      const dispatch = useAppDispatch();
      const lifecycle = useAppSelector(selectSlotLifecycle);

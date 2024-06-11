@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/store/hook";
 import {
   SlotLifecycle,
@@ -8,10 +8,9 @@ import {
   startSlot,
 } from "../../slices/slotSlice";
 import { twMerge } from "tailwind-merge";
-import { button, handle, loseP, spin, win } from "../../../../assets/slot/info";
+import { button, handle, spin, } from "../../../../assets/slot/info";
 import { selectBalance } from "../../../../entities/wallet/slices/walletSlice";
 import Notiflix from "notiflix";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { sound } from "@pixi/sound";
 import SOUNDS_SLOTS from "../../scene/GameScene/config";
 import WinCase from "./WinCase";
@@ -20,6 +19,7 @@ import LoseCase from "./LoseCase";
 
 interface ISlotEventPanelProps {}
 
+// eslint-disable-next-line no-empty-pattern
 const SlotEventPanel: FC<ISlotEventPanelProps> = ({ }) => {
   const lifecycle = useAppSelector(selectSlotLifecycle);
   const winOrLose = useAppSelector(selectSlotWinOrLose);

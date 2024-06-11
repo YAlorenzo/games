@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import {
   bet100,
   bet200,
@@ -7,14 +7,13 @@ import {
   bet800,
 } from "../../../../assets/roulette";
 import { useAppDispatch, useAppSelector } from "../../../../app/store/hook";
-import { selectSlotCurrentBet, selectSlotLifecycle, selectSlotReadyToStart, setSlotCurrentBet, setSlotReadyToStart, setSlotRefreshBet } from "../../slices/slotSlice";
-import SOUNDS_ROULETTE from "../../../roulette/scenes/GameScene/config";
+import { selectSlotCurrentBet, setSlotCurrentBet } from "../../slices/slotSlice";
+
 import { sound } from "@pixi/sound";
 import { selectBalance } from "../../../../entities/wallet/slices/walletSlice";
-import { refreshIcon } from "../../../../assets/main";
 import SOUNDS_SLOTS from "../../scene/GameScene/config";
 import styles from "./styles.module.css";
-import { balance, left_star, right_start } from "../../../../assets/slot/info";
+import { left_star, right_start } from "../../../../assets/slot/info";
 
 interface ISlotBetsPanelProps {}
 
@@ -41,6 +40,7 @@ const BETS = [
   },
 ];
 
+// eslint-disable-next-line no-empty-pattern
 const SlotBetsPanel: FC<ISlotBetsPanelProps> = ({ }) => {
   const currentBet = useAppSelector(selectSlotCurrentBet);
   const balence = useAppSelector(selectBalance);

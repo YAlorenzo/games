@@ -9,6 +9,7 @@ import { setModalSettingsActive } from "../../../games/roulette/slice/rouletteSl
 
 interface IRoulletePageProps {}
 
+// eslint-disable-next-line no-empty-pattern
 const RoulletePage: FC<IRoulletePageProps> = ({ }) => {
   const dispatch = useAppDispatch();
   const openModal = () => {

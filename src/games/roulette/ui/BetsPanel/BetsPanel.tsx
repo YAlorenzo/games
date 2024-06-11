@@ -1,6 +1,13 @@
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/store/hook";
-import {  selectCurrentBet, selectRouletteBetReady, selectRouletteLifecycle, setCurrentBet, setRouletteBetReady, setRouletteRefreshBet } from "../../slice/rouletteSlice";
+import {
+  selectCurrentBet,
+  selectRouletteBetReady,
+  selectRouletteLifecycle,
+  setCurrentBet,
+  setRouletteBetReady,
+  setRouletteRefreshBet,
+} from "../../slice/rouletteSlice";
 import {
   bet100,
   bet200,
@@ -8,7 +15,7 @@ import {
   bet50,
   bet800,
 } from "../../../../assets/roulette";
-import styles from './betsPanel.module.css';
+import styles from "./betsPanel.module.css";
 import { sound } from "@pixi/sound";
 import SOUNDS_ROULETTE from "../../scenes/GameScene/config";
 import { selectBalance } from "../../../../entities/wallet/slices/walletSlice";
@@ -40,7 +47,8 @@ const BETS = [
   },
 ];
 
-const BetsPanel: FC<IBetsPanelProps> = ({ }) => {
+// eslint-disable-next-line no-empty-pattern
+const BetsPanel: FC<IBetsPanelProps> = ({}) => {
   const dispatch = useAppDispatch();
   const lifecycle = useAppSelector(selectRouletteLifecycle);
   const betReady = useAppSelector(selectRouletteBetReady);
@@ -48,7 +56,7 @@ const BetsPanel: FC<IBetsPanelProps> = ({ }) => {
   const currentBet = useAppSelector(selectCurrentBet);
   const pickBet = (value: number) => {
     sound.play(SOUNDS_ROULETTE.BET);
-    if ((value + currentBet) <= balence) {
+    if (value + currentBet <= balence) {
       dispatch(setCurrentBet(value));
       dispatch(setRouletteBetReady(true));
       console.log("баланс: ", balence);

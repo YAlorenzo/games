@@ -19,6 +19,7 @@ interface IRouletteGameSceneProps {}
 
 const [width, height] = [1300, 550];
 
+// eslint-disable-next-line no-empty-pattern
 const RouletteGameScene: FC<IRouletteGameSceneProps> = ({ }) => {
 
   // импорт звуков

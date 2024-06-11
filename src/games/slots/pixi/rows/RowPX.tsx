@@ -1,5 +1,5 @@
 import { Container, Sprite, useTick } from "@pixi/react";
-import React, { FC } from "react";
+import { FC } from "react";
 import { TSlotRow } from "./utils";
 import { useState } from "react";
 import { useAppSelector } from "../../../../app/store/hook";

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import  { FC, useState } from "react";
 import { Container, Sprite, useTick } from "@pixi/react";
 import {
   arrow,
@@ -36,6 +36,7 @@ const POSITION_ARROW = {
   rotation: -0.45,
 };
 
+// eslint-disable-next-line no-empty-pattern
 const RouletteSpinPX: FC<IRouletteSpinPXProps> = ({}) => {
   const speed = useAppSelector(selectRouletteSpinSpeed);
   const dispatch = useAppDispatch();

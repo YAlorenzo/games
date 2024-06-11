@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../../store";
+import { RootState } from "../../../app/store";
 
 // Define a type for the slice state
 interface UserState {

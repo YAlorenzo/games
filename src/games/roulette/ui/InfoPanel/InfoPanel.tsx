@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useAppSelector } from "../../../../app/store/hook";
 import {
   RouletteLifecycle,
@@ -44,6 +44,7 @@ const ITEMS: IScoreItem[] = [
   },
 ];
 
+// eslint-disable-next-line no-empty-pattern
 const InfoPanel: FC<IInfoPanelProps> = ({ }) => {
   const balance = useAppSelector(selectBalance);
   const activeNumber = useAppSelector(selectActiveNumber);

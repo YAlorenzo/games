@@ -12,6 +12,7 @@ import { setModalSettingsActive } from "../../../games/slots/slices/slotSlice";
 
 interface ISlotsPageProps {}
 
+// eslint-disable-next-line no-empty-pattern
 const SlotsPage: FC<ISlotsPageProps> = ({ }) => {
   
   const dispatch = useAppDispatch();

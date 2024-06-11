@@ -6,6 +6,7 @@ interface ButtonInfoProps {
   
 }
 
+// eslint-disable-next-line no-empty-pattern
 const ButtonInfo: FC<ButtonInfoProps> = ({}) => {
     return (
         <div className={css.buttonInfoBlock}>

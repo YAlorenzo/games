@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { ROULETTE_TABLE_NUMBERS } from "./initData";
 import { twMerge } from "tailwind-merge";
 import { selectActiveNumber, selectRouletteNumberReady, setActiveNumber, setRouletteNumberReady } from "../../slice/rouletteSlice";
@@ -8,6 +8,7 @@ import { sound } from "@pixi/sound";
 
 interface IRouletteTableProps {}
 
+// eslint-disable-next-line no-empty-pattern
 const RouletteTable: FC<IRouletteTableProps> = ({}) => {
   const activeNumber = useAppSelector(selectActiveNumber);
   const numberReady = useAppSelector(selectRouletteNumberReady);

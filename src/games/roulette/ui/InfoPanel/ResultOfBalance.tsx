@@ -1,7 +1,6 @@
 import { FC, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 

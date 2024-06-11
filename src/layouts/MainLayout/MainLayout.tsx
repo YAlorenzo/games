@@ -7,6 +7,7 @@ import { balance } from "../../assets/slot/info";
 
 interface IMainLayoutProps {}
 
+// eslint-disable-next-line no-empty-pattern
 const MainLayout: FC<IMainLayoutProps> = ({ }) => {
   const balanceNum = useAppSelector(selectBalance);
     return (

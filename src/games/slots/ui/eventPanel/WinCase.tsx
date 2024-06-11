@@ -7,6 +7,7 @@ interface WinCaseProps {
   
 }
 
+// eslint-disable-next-line no-empty-pattern
 const WinCase: FC<WinCaseProps> = ({ }) => {
     useEffect(() => {
         sound.play(SOUNDS_SLOTS.WIN);

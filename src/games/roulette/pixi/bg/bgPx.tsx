@@ -4,6 +4,7 @@ import { bg } from "../../../../assets/roulette";
 
 interface IBgPXProps {}
 
+// eslint-disable-next-line no-empty-pattern
 const BgPX: FC<IBgPXProps> = ({}) => {
   return (
       <Container>

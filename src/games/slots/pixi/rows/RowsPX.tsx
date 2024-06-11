@@ -1,7 +1,7 @@
-import React, { FC, useMemo } from "react";
+import { FC, useMemo } from "react";
 import RowPX from "./RowPX";
 import { SLOT_ROW, TSlotRow } from "./utils";
-import { Container, Graphics, Sprite } from "@pixi/react";
+import { Container, Graphics } from "@pixi/react";
 import { useAppSelector } from "../../../../app/store/hook";
 import { selectSlotRows } from "../../slices/slotSlice";
 import { useRef, useEffect } from "react";
@@ -31,6 +31,7 @@ const RowsPX: FC<IRowsPXProps> = ({}) => {
 
   useEffect(() => {
     setLoading(true);
+
   }, []);
 
   return (

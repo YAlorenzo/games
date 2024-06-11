@@ -1,5 +1,4 @@
-import React, { FC, ReactNode, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { FC, ReactNode, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/store/hook";
 import { selectSlotCurrentBet, selectSlotLifecycle, selectSlotWinOrLose, SlotLifecycle, SlotWinOrLose } from "../../slices/slotSlice";
 import { setBalance } from "../../../../entities/wallet/slices/walletSlice";
@@ -23,6 +22,7 @@ const BalanceProvider: FC<IBalanceProviderProps> = ({ children }) => {
         if (isPlaying) {
             dispatch(setBalance(win === SlotWinOrLose.WIN ? currentBet * KOEF_WIN : -currentBet))
         } 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lifecycle])
   return (
       <>
