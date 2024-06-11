@@ -7,7 +7,6 @@ import LoginPage from "../../pages/auth/login";
 import RegisterPage from "../../pages/auth/register";
 import RoulletePage from "../../pages/games/roulette";
 import SlotsPage from "../../pages/games/slots";
-import HummerPage from "../../pages/games/hummer";
 
 export const router = createBrowserRouter([
   {
@@ -45,10 +44,6 @@ export const router = createBrowserRouter([
       {
         path: "slots",
         Component: SlotsPage,
-      },
-      {
-        path: "hummer",
-       Component: HummerPage,
       },
     ],
   },

@@ -61,28 +61,6 @@ const MainPage: FC<IMainPageProps> = ({}) => {
           </div>
         </Link>
       </div>
-      <div>
-        <h2 className="uppercase text-[#22c204] text-center text-[35px]">
-          Hummers
-        </h2>
-        <Link to={ROUTES.games.hummer}>
-          <div className="border-[3px] border-[#22c204] rounded-3xl pt-1 px-1 pb-7 bg-[#101a0e] relative">
-            <div className=" rounded-3xl overflow-hidden mx-auto">
-              <img
-                src={roulettePrev}
-                alt="icon"
-                className="w-full h-full block"
-              />
-            </div>
-            <div
-              className="rounded-2xl border-[3px] bg-[#101a0e] text-white border-[#22c204] text-[20px]
-             absolute -bottom-5 left-[36%] flex justify-center items-center w-[120px] "
-            >
-              PLAY
-            </div>
-          </div>
-        </Link>
-      </div>
     </div>
   );
 };
