@@ -33,7 +33,7 @@ const rouletteSpinSlice = createSlice({
       state.speed = randomSpeed;
       state.rotationInProgress = true;
     },
-    setRouletteSpinSpeed: (state, action: PayloadAction<number>) => {
+    setRouletteSpinSpeed: (state, action: PayloadAction<number | null>) => {
       const speed = action.payload;
       if (speed === 0) {
         state.rotationInProgress = false;

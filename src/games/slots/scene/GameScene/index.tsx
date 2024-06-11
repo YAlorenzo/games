@@ -20,6 +20,7 @@ interface ISlotGameSceneProps {}
 
 const [width, height] = [1150, 550];
 
+// eslint-disable-next-line no-empty-pattern
 const SlotGameScene: FC<ISlotGameSceneProps> = ({ }) => {
   // импорт звуков
   sound.add(SOUNDS_SLOTS.SPIN, soundSpin);

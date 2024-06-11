@@ -10,6 +10,6 @@ export const ROUTES = {
   },
 };
 
-export const generatUrl = (url: string, params?: any) => {
+export const generatUrl = (url: string) => {
   return url;
 };

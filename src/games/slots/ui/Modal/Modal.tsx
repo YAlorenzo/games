@@ -34,12 +34,12 @@ const Modal: FC<ModalProps> = ({}) => {
   };
 
   // изменение звука фона
-  const handleChangeValueBg = (event: Event, newValue: number | number[]) => {
+  const handleChangeValueBg = (_event: Event, newValue: number | number[]) => {
     setValueBg(newValue as number);
     sound.volume(SOUNDS_SLOTS.BG, newValue as number);
   };
 
-  const handleChangeValueEff = (event: Event, newValue: number | number[]) => {
+  const handleChangeValueEff = (_event: Event, newValue: number | number[]) => {
     setValueEff(newValue as number);
     sound.volume(SOUNDS_SLOTS.BET, newValue as number);
     sound.volume(SOUNDS_SLOTS.SPIN, newValue as number);
