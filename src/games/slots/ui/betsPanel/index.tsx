@@ -14,7 +14,7 @@ import { selectBalance } from "../../../../entities/wallet/slices/walletSlice";
 import { refreshIcon } from "../../../../assets/main";
 import SOUNDS_SLOTS from "../../scene/GameScene/config";
 import styles from "./styles.module.css";
-import { left_star, right_start } from "../../../../assets/slot/info";
+import { balance, left_star, right_start } from "../../../../assets/slot/info";
 
 interface ISlotBetsPanelProps {}
 
@@ -41,11 +41,15 @@ const BETS = [
   },
 ];
 
-const SlotBetsPanel: FC<ISlotBetsPanelProps> = ({}) => {
+const SlotBetsPanel: FC<ISlotBetsPanelProps> = ({ }) => {
+  const currentBet = useAppSelector(selectSlotCurrentBet);
+  const balence = useAppSelector(selectBalance);
   const dispatch = useAppDispatch();
   const pickBet = (value: number) => {
-    dispatch(setSlotCurrentBet(value)); 
     sound.play(SOUNDS_SLOTS.BET);
+    if ((value + currentBet) <= balence) {
+      dispatch(setSlotCurrentBet(value));
+    }
   };
  
   return (

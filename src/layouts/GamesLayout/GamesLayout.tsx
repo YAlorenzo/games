@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Outlet } from "react-router-dom";
 
 interface IGamesLayoutProps {}
@@ -6,7 +6,6 @@ interface IGamesLayoutProps {}
 const GamesLayout: FC<IGamesLayoutProps> = ({}) => {
   return (
     <div className="w-full h-screen">
-      {/* <div>Heard Games</div> */}
       <Outlet />
     </div>
   );

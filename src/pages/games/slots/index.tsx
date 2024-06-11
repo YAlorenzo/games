@@ -3,7 +3,7 @@ import CoreGameSlots from "../../../games/slots";
 import { twMerge } from "tailwind-merge";
 import styles from "./../../page.module.css";
 import titleImage from "../../../assets/slot/title.svg";
-import { friendsButtonIcon, homeButtonIcon, settingButtonIcon } from "../../../assets/roulette";
+import { homeButtonIcon, settingButtonIcon } from "../../../assets/roulette";
 import { ROUTES } from "../../../app/router/utils";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../../app/store/hook";
@@ -34,7 +34,6 @@ const SlotsPage: FC<ISlotsPageProps> = ({ }) => {
           <Link to={ROUTES.main} className="font-bold">
             <img src={homeButtonIcon} alt="icon" />
           </Link>
-          <img src={friendsButtonIcon} alt="icon" className="cursor-pointer" />
           <img src={settingButtonIcon} alt="icon" className="cursor-pointer" onClick={openModal}/>
         </div>
         <CoreGameSlots />

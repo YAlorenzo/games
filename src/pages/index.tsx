@@ -1,24 +1,17 @@
-import React, { FC, useEffect } from "react";
+import  { FC, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../app/router/utils";
-// import { useAppSelector } from "../app/store/hook";
-// import { selectUserNickname } from "../entities/user/slices/userSlice";
-import { useGetUserQuery } from "../entities/user/api/userApi";
 import { sound } from "@pixi/sound";
 import { roulettePrev, slotPrev } from "../assets/main";
 
 interface IMainPageProps {}
 
+// eslint-disable-next-line no-empty-pattern
 const MainPage: FC<IMainPageProps> = ({}) => {
-  // const nickname = useAppSelector(selectUserNickname);
-
-  const { data: users } = useGetUserQuery({
-    userId: 13,
-  });
-
   useEffect(() => {
     sound.stopAll();
   }, []);
+  
   return (
     <div className="flex gap-4 justify-center justify-centerfont-bold  passion-one-regular mt-9">
       <div>

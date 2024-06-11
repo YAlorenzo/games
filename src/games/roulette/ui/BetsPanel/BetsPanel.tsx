@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/store/hook";
 import {  selectCurrentBet, selectRouletteBetReady, selectRouletteLifecycle, setCurrentBet, setRouletteBetReady, setRouletteRefreshBet } from "../../slice/rouletteSlice";
 import {
@@ -44,10 +44,16 @@ const BetsPanel: FC<IBetsPanelProps> = ({ }) => {
   const dispatch = useAppDispatch();
   const lifecycle = useAppSelector(selectRouletteLifecycle);
   const betReady = useAppSelector(selectRouletteBetReady);
+  const balence = useAppSelector(selectBalance);
+  const currentBet = useAppSelector(selectCurrentBet);
   const pickBet = (value: number) => {
-      sound.play(SOUNDS_ROULETTE.BET);
+    sound.play(SOUNDS_ROULETTE.BET);
+    if ((value + currentBet) <= balence) {
       dispatch(setCurrentBet(value));
       dispatch(setRouletteBetReady(true));
+      console.log("баланс: ", balence);
+      console.log("ставка: ", value + currentBet);
+    }
   };
   const refreshBet = (value: boolean) => {
     if (lifecycle !== "play") {

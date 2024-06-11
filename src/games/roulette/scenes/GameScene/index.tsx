@@ -8,7 +8,6 @@ import { sound } from "@pixi/sound";
 import {
   soundBet,
   soundBg,
-  // soundBg,
   soundNumber,
   soundRouletteSpin,
 } from "../../../../assets/sounds/roulette";

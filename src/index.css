@@ -2,13 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  outline: 1px solid red;
-} */
+
 .passion-one-regular {
   font-family: "Passion One", sans-serif;
   font-weight: 400;
