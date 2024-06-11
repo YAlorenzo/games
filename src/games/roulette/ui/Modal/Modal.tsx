@@ -37,12 +37,12 @@ const Modal: FC<ModalProps> = ({}) => {
   };
 
   // изменение звука фона
-  const handleChangeValueBg = (event: Event, newValue: number | number[]) => {
+  const handleChangeValueBg = (_event: Event, newValue: number | number[]) => {
     setValueBg(newValue as number);
     sound.volume(SOUNDS_ROULETTE.BG, newValue as number);
   };
 
-  const handleChangeValueEff = (event: Event, newValue: number | number[]) => {
+  const handleChangeValueEff = (_event: Event, newValue: number | number[]) => {
     setValueEff(newValue as number);
     sound.volume(SOUNDS_ROULETTE.BET, newValue as number);
     sound.volume(SOUNDS_ROULETTE.SPIN, newValue as number);

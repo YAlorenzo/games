@@ -20,8 +20,7 @@ const generateRandomRow = (slotRow: TSlotRow[]) => {
 
 // eslint-disable-next-line no-empty-pattern
 const RowsPX: FC<IRowsPXProps> = ({}) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const rows = useAppSelector(selectSlotRows);
 
   const firstSlotRow = useMemo(() => generateRandomRow(SLOT_ROW), []);
